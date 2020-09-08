@@ -5,22 +5,22 @@
   "projects": {
     "angular-electron": {
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "src/ui",
       "projectType": "application",
       "architect": {
         "build": {
           "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "polyfills": "src/polyfills.ts",
+            "index": "src/ui/index.html",
+            "main": "src/ui/main.ts",
+            "tsConfig": "src/ui/tsconfig.app.json",
+            "polyfills": "src/ui/polyfills.ts",
             "assets": [
-              "src/assets"
+              "src/ui/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/ui/styles.scss"
             ],
             "scripts": [],
             "customWebpackConfig": {
@@ -40,8 +40,8 @@
               "buildOptimizer": false,
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.dev.ts"
+                  "replace": "src/ui/environments/environment.ts",
+                  "with": "src/ui/environments/environment.dev.ts"
                 }
               ]
             },
@@ -57,8 +57,8 @@
               "buildOptimizer": false,
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.web.ts"
+                  "replace": "src/ui/environments/environment.ts",
+                  "with": "src/ui/environments/environment.web.ts"
                 }
               ]
             },
@@ -74,8 +74,8 @@
               "buildOptimizer": true,
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src/ui/environments/environment.ts",
+                  "with": "src/ui/environments/environment.prod.ts"
                 }
               ]
             }
@@ -107,16 +107,16 @@
         "test": {
           "builder": "@angular-builders/custom-webpack:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills-test.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "main": "src/ui/test.ts",
+            "polyfills": "src/ui/polyfills-test.ts",
+            "tsConfig": "src/ui/tsconfig.spec.json",
+            "karmaConfig": "src/ui/karma.conf.js",
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/ui/styles.scss"
             ],
             "assets": [
-              "src/assets"
+              "src/ui/assets"
             ],
             "customWebpackConfig": {
               "path": "./angular.webpack.js"
@@ -128,8 +128,8 @@
           "options": {
             "eslintConfig": ".eslintrc.json",
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "src/ui/tsconfig.app.json",
+              "src/ui/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"

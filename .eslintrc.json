@@ -19,8 +19,8 @@
         "ecmaVersion": 10,
         "project": [
           "./tsconfig.serve.json",
-          "./src/tsconfig.app.json",
-          "./src/tsconfig.spec.json",
+          "./src/ui/tsconfig.app.json",
+          "./src/ui/tsconfig.spec.json",
           "./e2e/tsconfig.e2e.json"
         ],
         "sourceType": "module",

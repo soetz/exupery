@@ -7,8 +7,8 @@
 /app-builds
 /release
 main.js
-src/**/*.js
-!src/karma.conf.js
+src/ui/**/*.js
+!src/ui/karma.conf.js
 *.js.map
 
 # dependencies
