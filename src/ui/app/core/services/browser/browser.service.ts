@@ -1,20 +1,39 @@
 import { Injectable } from '@angular/core';
-
-// If you import a module but never use any of the imported values other than as TypeScript types,
-// the resulting javascript file will look as if you never imported the module at all.
 import { ipcRenderer as interProcessCommunication } from 'electron';
+import { CamelCasePipe } from 'app/shared/pipes';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BrowserService {
+
+  private interProcessChannelsToListenTo: Array<string> = [
+  ];
+
   interProcessCommunication: typeof interProcessCommunication;
+
+  camelCase: CamelCasePipe;
 
   get isElectron(): boolean {
     return !!(window && window.process && window.process.type);
   }
 
-  constructor() {
+  constructor(
+    camelCase: CamelCasePipe
+  ) {
+    this.interProcessCommunication = interProcessCommunication;
+    this.camelCase = camelCase;
+  }
+
+  public initialize = (): void => {
+    this.registerInterProcessListeners();
+  }
+
+  private registerInterProcessListeners = (): void => {
+    this.interProcessChannelsToListenTo.forEach((channel: string): void => {
+      const listenerName: string = this.camelCase.transform(channel) + 'Listener';
+      this.interProcessCommunication.on(channel, this[listenerName]);
+    });
   }
 
   private sendMessage = (channel: string, ...args: Array<any>): void => {
