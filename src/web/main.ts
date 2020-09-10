@@ -2,9 +2,13 @@ import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 
+import { InterProcessService } from './inter-process-service';
+
 export class Application {
 
   private static instance: Application;
+
+  private router: InterProcessService;
 
   private win: BrowserWindow = null;
   private serve = false;
@@ -49,6 +53,9 @@ export class Application {
       // Catch Error
       // throw e;
     }
+
+    this.router = new InterProcessService();
+    this.router.registerInterProcessListeners();
   }
 
   private createWindow = (): BrowserWindow => {
