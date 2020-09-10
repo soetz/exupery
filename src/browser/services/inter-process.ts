@@ -1,7 +1,7 @@
 import { ipcMain as interProcessCommunication } from 'electron';
 import { Service } from 'typedi';
 
-import { CamelCase } from './utils';
+import { CamelCase } from '../utils';
 
 @Service()
 export class InterProcessService {

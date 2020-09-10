@@ -3,7 +3,7 @@ import { Service } from 'typedi';
 import * as path from 'path';
 import * as url from 'url';
 
-import { InterProcessService } from './inter-process-service';
+import { InterProcessService } from './services/inter-process';
 
 @Service()
 export class Application {
