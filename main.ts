@@ -1,3 +1,5 @@
-import { Application } from './src/browser/main';
+import 'reflect-metadata';
+import { Container } from 'typedi';
+import { Application } from './src/browser/application';
 
-Application.getApplication().initialize();
+Container.get(Application);

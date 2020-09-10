@@ -12,6 +12,9 @@
     },
     {
       "path": "./src/ui/tsconfig.spec.json"
+    },
+    {
+      "path": "./tsconfig.serve.json"
     }
   ]
 }

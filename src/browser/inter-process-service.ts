@@ -1,7 +1,9 @@
 import { ipcMain as interProcessCommunication } from 'electron';
+import { Service } from 'typedi';
 
 import { CamelCase } from './utils';
 
+@Service()
 export class InterProcessService {
 
   private interProcessChannelsToListenTo: Array<string> = [

@@ -1,27 +1,23 @@
 import { app, BrowserWindow, screen } from 'electron';
+import { Service } from 'typedi';
 import * as path from 'path';
 import * as url from 'url';
 
 import { InterProcessService } from './inter-process-service';
 
+@Service()
 export class Application {
-
-  private static instance: Application;
-
-  private router: InterProcessService;
 
   private win: BrowserWindow = null;
   private serve = false;
 
-  public static getApplication = (): Application => {
-    if(!Application.instance) {
-      Application.instance = new Application();
-    }
-
-    return Application.instance;
+  constructor(
+    private interProcessService: InterProcessService
+  ) {
+    this.initialize();
   }
 
-  public initialize = (): void => {
+  private initialize = (): void => {
     try {
 
       app.allowRendererProcessReuse = true;
@@ -54,8 +50,7 @@ export class Application {
       // throw e;
     }
 
-    this.router = new InterProcessService();
-    this.router.registerInterProcessListeners();
+    this.interProcessService.registerInterProcessListeners();
   }
 
   private createWindow = (): BrowserWindow => {
