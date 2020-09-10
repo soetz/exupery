@@ -9,7 +9,7 @@
 /main.js
 src/ui/**/*.js
 !src/ui/karma.conf.js
-src/web/**/*.js
+src/browser/**/*.js
 *.js.map
 
 # dependencies

@@ -1,3 +1,3 @@
-import { Application } from './src/web/main';
+import { Application } from './src/browser/main';
 
 Application.getApplication().initialize();

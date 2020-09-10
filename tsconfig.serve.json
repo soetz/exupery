@@ -18,8 +18,7 @@
     ]
   },
   "files": [
-    "main.ts",
-    "src/web/main.ts"
+    "main.ts"
   ],
   "exclude": [
     "node_modules",
