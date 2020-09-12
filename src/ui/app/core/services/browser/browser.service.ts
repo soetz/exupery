@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ipcRenderer } from 'electron';
 import { CamelCasePipe } from 'app/shared/pipes';
+import { ViewRectangleModel } from 'app/shared/models';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,10 @@ export class BrowserService {
 
   private hasNavigatedListener = (event: Electron.IpcRendererEvent, uri: string): void => {
     // INSERT HAS NAVIGATED ACTION HERE
+  }
+
+  public browserViewSlotRectangle = (rectangle: ViewRectangleModel): void => {
+    this.sendMessage('browser-view-slot-rectangle', rectangle.getAsStructuredCloneAlgorithmCompliantObject());
   }
 
   public createNewTab = (): void => {
