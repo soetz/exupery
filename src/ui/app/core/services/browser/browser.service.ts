@@ -8,6 +8,7 @@ import { CamelCasePipe } from 'app/shared/pipes';
 export class BrowserService {
 
   private interProcessChannelsToListenTo: Array<string> = [
+    'has-navigated'
   ];
 
   interProcessCommunication: typeof interProcessCommunication;
@@ -38,6 +39,10 @@ export class BrowserService {
 
   private sendMessage = (channel: string, ...args: Array<any>): void => {
     return this.interProcessCommunication.send(channel, ...args);
+  }
+
+  private hasNavigatedListener = (event: Electron.IpcRendererEvent, uri: string): void => {
+    // INSERT HAS NAVIGATED ACTION HERE
   }
 
   public createNewTab = (): void => {
