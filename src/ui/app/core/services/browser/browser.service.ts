@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ipcRenderer as interProcessCommunication } from 'electron';
+import { ipcRenderer } from 'electron';
 import { CamelCasePipe } from 'app/shared/pipes';
 
 @Injectable({
@@ -11,7 +11,7 @@ export class BrowserService {
     'has-navigated'
   ];
 
-  interProcessCommunication: typeof interProcessCommunication;
+  interProcessCommunication: typeof ipcRenderer;
 
   camelCase: CamelCasePipe;
 
@@ -22,8 +22,11 @@ export class BrowserService {
   constructor(
     camelCase: CamelCasePipe
   ) {
-    this.interProcessCommunication = interProcessCommunication;
     this.camelCase = camelCase;
+
+    if(this.isElectron) {
+      this.interProcessCommunication = window.require('electron').ipcRenderer;
+    }
   }
 
   public initialize = (): void => {
