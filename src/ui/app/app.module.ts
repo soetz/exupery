@@ -12,10 +12,10 @@ import { SharedModule } from './shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { NavigationModule } from './navigation/navigation.module';
+import { ViewModule } from './view/view.module';
+
 import { AppComponent } from './app.component';
-import { SideBarComponent } from './side-bar/side-bar.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { BrowserViewSlotComponent } from './browser-view-slot/browser-view-slot.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
@@ -23,13 +23,17 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
 }
 
 @NgModule({
-  declarations: [AppComponent, SideBarComponent, TopBarComponent, BrowserViewSlotComponent],
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
     CoreModule,
+    NavigationModule,
     SharedModule,
+    ViewModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
