@@ -1,11 +1,13 @@
+import { ViewRectangleClonable } from "./view-rectangle-clonable";
+
 export class ViewRectangleModel {
   private x: number;
   private y: number;
   private width: number;
   private height: number;
 
-  constructor(x: number | DOMRect, y?: number, width?: number, height?: number) {
-    if(x instanceof DOMRect) {
+  constructor(x: number | DOMRect | ViewRectangleClonable, y?: number, width?: number, height?: number) {
+    if(x instanceof DOMRect || x instanceof ViewRectangleClonable) {
       const rectangle = x;
       this.x = rectangle.x;
       this.y = rectangle.y;
@@ -36,7 +38,7 @@ export class ViewRectangleModel {
     return this.height;
   }
 
-  public getAsStructuredCloneAlgorithmCompliantObject = (): any => {
+  public getAsStructuredCloneAlgorithmCompliantObject = (): ViewRectangleClonable => {
     return {
       x: this.getX(),
       y: this.getY(),
