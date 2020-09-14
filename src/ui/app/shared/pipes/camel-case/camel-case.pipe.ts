@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { invalidPipeArgumentError } from './invalid-pipe-argument-error';
+import { invalidPipeArgumentError } from '../invalid-pipe-argument-error/invalid-pipe-argument-error';
 
 @Pipe({name: 'camelCase'})
 export class CamelCasePipe implements PipeTransform {
