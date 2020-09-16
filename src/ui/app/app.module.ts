@@ -12,7 +12,8 @@ import { SharedModule } from './shared/shared.module';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-import { NavigationModule } from './navigation/navigation.module';
+import { SideBarModule } from './side-bar/side-bar.module';
+import { TopBarModule } from './top-bar/top-bar.module';
 import { ViewModule } from './view/view.module';
 
 import { AppComponent } from './app.component';
@@ -31,7 +32,8 @@ export function HttpLoaderFactory(http: HttpClient): TranslateHttpLoader {
     FormsModule,
     HttpClientModule,
     CoreModule,
-    NavigationModule,
+    SideBarModule,
+    TopBarModule,
     SharedModule,
     ViewModule,
     TranslateModule.forRoot({
