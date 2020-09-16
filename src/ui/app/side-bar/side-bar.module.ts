@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { SideBarComponent } from './side-bar/side-bar.component';
+import { SideBarComponent } from './side-bar.component';
 import { QuickActionsComponent } from './quick-actions/quick-actions.component';
 import { BlocksContainerComponent } from './blocks-container/blocks-container.component';
 import { SettingsButtonComponent } from './settings-button/settings-button.component';

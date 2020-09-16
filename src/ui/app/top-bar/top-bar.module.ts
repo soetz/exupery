@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { TopBarComponent } from './top-bar/top-bar.component';
+import { TopBarComponent } from './top-bar.component';
 import { TabsContainerComponent } from './tabs-container/tabs-container.component';
 import { TabComponent } from './tab/tab.component';
 import { PageControlsComponent } from './page-controls/page-controls.component';
