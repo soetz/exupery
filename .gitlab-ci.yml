@@ -9,10 +9,12 @@ stages:
     paths:
     - .npm/
 
-build:
+lint-test-build:
   extends: .node_template
   stage: build
   script:
+   - npm run lint
+   - npm run test
    - npm run build:prod
   artifacts:
     paths:
