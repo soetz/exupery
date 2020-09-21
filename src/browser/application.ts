@@ -83,7 +83,7 @@ export class Application {
       this.win.webContents.openDevTools();
 
       require('electron-reload')(path.join(__dirname, '../..'), {
-        electron: require(path.join(__dirname, '../../node_modules/electron')/*`${__dirname}/node_modules/electron`*/)
+        electron: require(path.join(__dirname, '../../node_modules/electron'))
       });
       this.win.loadURL('http://localhost:4200');
 
