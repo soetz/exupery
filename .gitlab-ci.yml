@@ -1,0 +1,19 @@
+stages:
+  - build
+
+.node_template:
+  image: node:latest
+  before_script:
+    - npm ci --cache .npm --prefer-offline
+  cache:
+    paths:
+    - .npm/
+
+build:
+  extends: .node_template
+  stage: build
+  script:
+   - npm run build:prod
+  artifacts:
+    paths:
+      - dist/
