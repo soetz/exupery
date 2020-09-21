@@ -1,3 +1,17 @@
 :host {
-  
+  display: grid;
+  grid-template-columns:
+      [side-bar-start]
+    64px
+      [side-bar-end top-bar-start browser-view-slot-start]
+    auto
+      [top-bar-end browser-view-slot-end];
+  grid-template-rows:
+      [side-bar-start top-bar-start]
+    64px
+      [top-bar-end browser-view-slot-start]
+    auto
+      [side-bar-end browser-view-slot-end];
+
+  height: 100%;
 }

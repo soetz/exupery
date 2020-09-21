@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { ipcRenderer as interProcessCommunication } from 'electron';
+import { ipcRenderer } from 'electron';
 import { CamelCasePipe } from 'app/shared/pipes';
+import { ViewRectangleModel } from 'app/shared/models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class BrowserService {
     'has-navigated'
   ];
 
-  interProcessCommunication: typeof interProcessCommunication;
+  interProcessCommunication: typeof ipcRenderer;
 
   camelCase: CamelCasePipe;
 
@@ -22,8 +23,11 @@ export class BrowserService {
   constructor(
     camelCase: CamelCasePipe
   ) {
-    this.interProcessCommunication = interProcessCommunication;
     this.camelCase = camelCase;
+
+    if(this.isElectron) {
+      this.interProcessCommunication = window.require('electron').ipcRenderer;
+    }
   }
 
   public initialize = (): void => {
@@ -43,6 +47,10 @@ export class BrowserService {
 
   private hasNavigatedListener = (event: Electron.IpcRendererEvent, uri: string): void => {
     // INSERT HAS NAVIGATED ACTION HERE
+  }
+
+  public browserViewSlotRectangle = (rectangle: ViewRectangleModel): void => {
+    this.sendMessage('browser-view-slot-rectangle', rectangle.getAsStructuredCloneAlgorithmCompliantObject());
   }
 
   public createNewTab = (): void => {

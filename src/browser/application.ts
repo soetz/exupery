@@ -3,13 +3,14 @@ import { Service } from 'typedi';
 import * as path from 'path';
 import * as url from 'url';
 
-import { InterProcessService } from './services/inter-process';
+import { InterProcessService } from './services/';
 
 @Service()
 export class Application {
 
-  private win: BrowserWindow = null;
+  private arguments: Array<string>;
   private serve = false;
+  private win: BrowserWindow = null;
 
   constructor(
     private interProcessService: InterProcessService
@@ -18,6 +19,9 @@ export class Application {
   }
 
   private initialize = (): void => {
+    this.arguments = process.argv.slice(1);
+    this.serve = this.arguments.some((value) => value === '--serve');
+
     try {
 
       app.allowRendererProcessReuse = true;
@@ -78,8 +82,8 @@ export class Application {
 
       this.win.webContents.openDevTools();
 
-      require('electron-reload')(__dirname, {
-        electron: require(`${__dirname}/node_modules/electron`)
+      require('electron-reload')(path.join(__dirname, '../..'), {
+        electron: require(path.join(__dirname, '../../node_modules/electron')/*`${__dirname}/node_modules/electron`*/)
       });
       this.win.loadURL('http://localhost:4200');
 

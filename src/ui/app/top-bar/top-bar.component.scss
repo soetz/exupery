@@ -1,0 +1,17 @@
+:host {
+  grid-area: top-bar;
+
+  display: grid;
+  grid-template-columns:
+      [tabs-container-start page-controls-start]
+    auto
+      [tabs-container-end page-controls-end];
+  grid-template-rows:
+      [tabs-container-start]
+    32px
+      [tabs-container-end page-controls-start]
+    32px
+      [page-controls-end];
+
+  background-color: #333;
+}

@@ -7,7 +7,8 @@ import { CamelCase } from '../utils';
 export class InterProcessService {
 
   private interProcessChannelsToListenTo: Array<string> = [
-    'new-tab'
+    'new-tab',
+    'browser-view-slot-rectangle'
   ];
 
   private webContents: Electron.WebContents;
@@ -26,6 +27,10 @@ export class InterProcessService {
 
   private sendMessage = (channel: string, ...args: Array<any>): void => {
     return this.webContents.send(channel, args);
+  }
+
+  private browserViewSlotRectangleListener = (event: Electron.IpcMainEvent, rectangle: any): void => {
+    // INSERT BROWSER VIEW BOUNDS UPDATE HERE
   }
 
   private newTabListener = (): void => {
