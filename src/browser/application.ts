@@ -3,7 +3,7 @@ import { Service } from 'typedi';
 import * as path from 'path';
 import * as url from 'url';
 
-import { InterProcessService } from './services/';
+import { InterProcessService, ViewManagerService } from './services/';
 
 @Service()
 export class Application {
@@ -13,7 +13,8 @@ export class Application {
   private win: BrowserWindow = null;
 
   constructor(
-    private interProcessService: InterProcessService
+    private interProcessService: InterProcessService,
+    private viewManagerService: ViewManagerService
   ) {
     this.initialize();
   }
@@ -46,6 +47,7 @@ export class Application {
         // dock icon is clicked and there are no other windows open.
         if (this.win === null) {
           this.createWindow();
+          this.createBrowserView();
         }
       });
 
@@ -57,6 +59,7 @@ export class Application {
 
   private afterApplicationReady = (): void => {
     this.createWindow();
+    this.createBrowserView();
 
     this.interProcessService.initialize(this.win.webContents);
   }
@@ -104,5 +107,9 @@ export class Application {
     });
 
     return this.win;
+  }
+
+  private createBrowserView = (): void => {
+    this.viewManagerService.createBrowserView(this.win);
   }
 }

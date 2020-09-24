@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ipcMain as interProcessCommunication } from 'electron';
 import { Service } from 'typedi';
 
 import { CamelCase } from '../utils';
+import { ViewManagerService } from './view-manager';
+import { ViewRectangle } from '../models';
 
 @Service()
 export class InterProcessService {
@@ -11,7 +14,12 @@ export class InterProcessService {
     'browser-view-slot-rectangle'
   ];
 
+  private viewManagerService: ViewManagerService;
   private webContents: Electron.WebContents;
+
+  constructor(viewManagerService: ViewManagerService) {
+    this.viewManagerService = viewManagerService;
+  }
 
   public initialize = (webContents: Electron.WebContents): void => {
     this.registerInterProcessListeners();
@@ -29,8 +37,8 @@ export class InterProcessService {
     return this.webContents.send(channel, args);
   }
 
-  private browserViewSlotRectangleListener = (event: Electron.IpcMainEvent, rectangle: any): void => {
-    // INSERT BROWSER VIEW BOUNDS UPDATE HERE
+  private browserViewSlotRectangleListener = (event: Electron.IpcMainEvent, rectangle: ViewRectangle): void => {
+    this.viewManagerService.resizeCurrentView(rectangle);
   }
 
   private newTabListener = (): void => {
